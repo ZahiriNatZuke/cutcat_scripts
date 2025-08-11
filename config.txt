@@ -1,0 +1,168 @@
+# =============================================================================
+# CONFIGURACIÓN SIMPLIFICADA - VideoCut Script
+# =============================================================================
+# Script simplificado para edición de video sin cover/end
+# 
+# CARACTERÍSTICAS:
+# ✅ Solo procesamiento de video con timestamps integrados
+# ✅ Compatible con todas las aceleraciones hardware
+# ✅ Configuración simplificada en un solo archivo
+# 
+# USO: go run videocut.go config.txt
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# CONFIGURACIONES BÁSICAS - CALIDAD ESTÁNDAR
+# -----------------------------------------------------------------------------
+
+[basico]
+# Configuración básica estándar
+input = input.mp4
+output = output_basico.mp4
+hwaccel = auto
+width = 1920
+height = 1080
+fps = 30
+crf = 23
+preset = fast
+00:00:00 00:00:30
+00:02:00 00:03:00
+
+[rapido]
+# Para pruebas rápidas (menor calidad)
+input = input.mp4
+output = output_rapido.mp4
+hwaccel = auto
+width = 1280
+height = 720
+fps = 30
+crf = 28
+preset = ultrafast
+optimize = speed
+00:00:00 00:00:30
+
+# -----------------------------------------------------------------------------
+# CONFIGURACIONES DE CALIDAD - PRODUCCIÓN
+# -----------------------------------------------------------------------------
+
+[alta_calidad]
+# Para videos finales de alta calidad
+input = input.mp4
+output = output_alta_calidad.mp4
+hwaccel = auto
+width = 1920
+height = 1080
+fps = 30
+crf = 18
+preset = slow
+twopass = true
+optimize = quality
+00:00:00 00:00:30
+00:02:00 00:03:00
+
+[calidad_4k]
+# Para contenido 4K (requiere CPU potente)
+input = input.mp4
+output = output_4k.mp4
+hwaccel = auto
+width = 3840
+height = 2160
+fps = 30
+crf = 20
+preset = medium
+00:00:00 00:00:30
+
+# -----------------------------------------------------------------------------
+# CONFIGURACIONES ESPECIALES - CASOS ESPECÍFICOS
+# -----------------------------------------------------------------------------
+
+[gaming_60fps]
+# Para clips de gaming a 60fps
+input = input.mp4
+output = output_gaming.mp4
+hwaccel = auto
+width = 1920
+height = 1080
+fps = 60
+crf = 22
+preset = fast
+00:00:00 00:00:30
+
+[mobile_optimized]
+# Para dispositivos móviles
+input = input.mp4
+output = output_mobile.mp4
+hwaccel = auto
+width = 1280
+height = 720
+fps = 30
+crf = 26
+preset = fast
+00:00:00 00:00:30
+
+[streaming_optimized]
+# Optimizado para streaming/web
+input = input.mp4
+output = output_streaming.mp4
+hwaccel = auto
+width = 1920
+height = 1080
+fps = 30
+crf = 22
+preset = fast
+optimize = balanced
+00:00:00 00:00:30
+
+[nvenc_test]
+# Prueba específica con NVENC
+input = input.mp4
+output = output_nvenc.mp4
+hwaccel = nvenc
+width = 1920
+height = 1080
+fps = 30
+crf = 22
+preset = fast
+00:00:00 00:00:30
+
+[cpu_forzado]
+# Forzar CPU para máxima compatibilidad
+input = input.mp4
+output = output_cpu.mp4
+hwaccel = cpu
+width = 1920
+height = 1080
+fps = 30
+crf = 22
+preset = fast
+00:00:00 00:00:30
+
+# -----------------------------------------------------------------------------
+# NOTAS TÉCNICAS
+# -----------------------------------------------------------------------------
+# 
+# RESOLUCIONES COMUNES:
+# - 4K:    3840x2160 (requiere CPU muy potente)
+# - 1440p: 2560x1440 (calidad premium)
+# - 1080p: 1920x1080 (estándar web)
+# - 720p:  1280x720  (móvil/rápido)
+# 
+# CRF (CALIDAD):
+# - 18-20: Calidad muy alta (archivos grandes)
+# - 22-24: Calidad buena (balance recomendado)
+# - 26-28: Calidad aceptable (archivos pequeños)
+# 
+# PRESETS (VELOCIDAD):
+# - ultrafast: Muy rápido, calidad baja
+# - veryfast:  Rápido, calidad decente
+# - fast:      Balance velocidad/calidad
+# - medium:    Calidad estándar
+# - slow:      Alta calidad, más lento
+# 
+# HARDWARE ACCELERATION:
+# - auto: Detección automática (recomendado)
+# - nvenc: NVIDIA GPUs
+# - qsv: Intel Quick Sync
+# - vaapi: Intel/AMD GPUs (Linux)
+# - cpu: Siempre funciona, máxima compatibilidad
+# =============================================================================
