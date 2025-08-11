@@ -10,13 +10,112 @@ Script Go simplificado para crear highlights de video con timestamps integrados.
 - **📱 Multi-resolución**: Desde 720p móvil hasta 4K
 - **🎮 Gaming Ready**: Configuraciones específicas para clips de gaming a 60fps
 
-## 🚀 Instalación y Uso
+## 🚀 Instalación Paso a Paso
 
-### Prerrequisitos
-- Go 1.19+ instalado
-- FFmpeg con soporte de hardware acceleration (opcional)
+### 📦 Windows
 
-### Uso Simple
+#### 1. Instalar Go
+1. Descargar Go desde https://golang.org/dl/
+2. Ejecutar el instalador `.msi`
+3. Reiniciar la terminal o PowerShell
+4. Verificar instalación:
+```powershell
+go version
+```
+
+#### 2. Instalar FFmpeg
+1. Instalar FFmpeg
+```powershell
+winget install ffmpeg
+```
+1. Reiniciar terminal y verificar:
+```powershell
+ffmpeg -version
+```
+
+#### 3. Ejecutar el Script
+```powershell
+go run videocut.go config.txt
+```
+
+### 🐧 Linux (Ubuntu/Debian)
+
+#### 1. Instalar Go
+```bash
+sudo add-apt-repository ppa:longsleep/golang-backports
+sudo apt update
+sudo apt install golang-go
+
+# Verificar
+go version
+```
+
+#### 2. Instalar FFmpeg
+```bash
+# Ubuntu/Debian
+sudo apt update
+sudo apt install ffmpeg
+# Verificar
+ffmpeg -version
+```
+
+#### 3. Ejecutar el Script
+```bash
+go run videocut.go config.txt
+```
+
+### 🍎 macOS
+
+#### 1. Instalar Go
+**Opción A - Homebrew:**
+```bash
+# Instalar Homebrew si no lo tienes
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Instalar Go
+brew install go
+```
+
+**Opción B - Manual:**
+1. Descargar desde https://golang.org/dl/
+2. Ejecutar el archivo `.pkg`
+3. Verificar:
+```bash
+go version
+```
+
+#### 2. Instalar FFmpeg
+```bash
+# Con Homebrew
+brew install ffmpeg
+
+# Verificar
+ffmpeg -version
+```
+
+#### 3. Ejecutar el Script
+```bash
+go run videocut.go config.txt
+```
+
+### 🔧 Verificación de la Instalación
+
+Una vez instalado todo, verifica que funcione:
+
+```bash
+# Verificar Go
+go version
+
+# Verificar FFmpeg
+ffmpeg -version
+
+# Verificar codecs de hardware (opcional)
+ffmpeg -codecs | grep nvenc    # NVIDIA
+ffmpeg -codecs | grep qsv      # Intel
+ffmpeg -codecs | grep vaapi    # AMD/Intel Linux
+```
+
+### ▶️ Uso Básico
 ```bash
 go run videocut.go config.txt
 ```
@@ -153,22 +252,6 @@ cutcat_scripts/
 ├── input.mp4           # Video de entrada (ejemplo)
 └── README.md           # Esta documentación
 ```
-
-## 🔄 Changelog
-
-### v2.0.0 - Simplificación Mayor
-- ❌ **ELIMINADO**: Funciones cover/end (imágenes de portada/cierre)
-- ❌ **ELIMINADO**: Modo simple con timestamps externos
-- ❌ **ELIMINADO**: Soporte para archivos timestamps.txt separados
-- ✅ **AÑADIDO**: Configuración unificada con timestamps integrados
-- ✅ **MEJORADO**: Compatibilidad de hardware acceleration
-- ✅ **SIMPLIFICADO**: Solo un modo de operación (config.txt)
-
-### Cambios Técnicos
-- Eliminadas funciones: `parseMediaSpec()`, `loadTimestamps()`, `parseSimpleArgs()`
-- Eliminados campos: `CoverSpec`, `EndSpec`, `TimestampsFile`
-- Simplificada función `buildFFmpegCommand()` sin filtros complejos de cover/end
-- Mejorada detección automática de hardware
 
 ## 🤝 Contribuciones
 
